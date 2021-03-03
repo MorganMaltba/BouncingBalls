@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ping Pong Ball</title>
+</head>
+<body>
+    
+<div id = "ball" style ="
+    z-index: 5;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: aquamarine">
+</div>
+
+</body>
+</html>
+
+<script>
+
+var velocity = 20;
+var positionx = 0;
+var positiony = 0;
+var ball = document.getElementById('ball');
+var reversex = false;
+var reversey = false;
+
+
+function moveball(){
+    var xmin = 0;
+    var xmax = window.innerWidth;
+    var ymin = 0;
+    var ymax = window.innerHeight;
+
+    if (reversex){
+        positionx = positionx - velocity;
+        ball.style.left = positionx + 'px';
+    }
+    else {
+        positionx = positionx + velocity;
+        ball.style.left = positionx + 'px';
+    };
+
+    if (reversey){
+        positiony = positiony - velocity;
+        ball.style.top = positiony + 'px';
+    } 
+    else {
+        positiony = positiony + velocity;
+        ball.style.top = positiony + 'px';
+    };
+
+    if (
+        positiony + 50 > ymax ||
+        positiony === ymin
+    ) {
+        reversey = !reversey
+    }
+    if (
+        positionx + 50 > xmax ||
+        positionx === xmin
+    ) {
+        reversex = !reversex
+    }
+
+}
+
+setInterval (moveball, 100)
+</script>
